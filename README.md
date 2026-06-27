@@ -41,7 +41,6 @@ pip install -r requirements.txt
 Configurazione
 
 È necessario ottenere una chiave API dal portale Visual Crossing. Una volta ottenuta, creare un file denominato .env nella directory principale del progetto e inserire la chiave nel seguente formato:
-Snippet di codice
 
 API_KEY=tua_api_key
 
