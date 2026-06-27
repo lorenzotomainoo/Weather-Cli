@@ -1,81 +1,105 @@
-Weather CLI
+# Weather CLI
 
-Applicazione a riga di comando sviluppata in Python per la consultazione delle condizioni meteorologiche attuali e delle relative previsioni tramite le API di Visual Crossing Weather.
-Funzionalità
+Weather CLI is a command-line application written in Python that retrieves current weather conditions and multi-day forecasts using the Visual Crossing Weather API.
 
-    Rilevamento automatico della posizione tramite indirizzo IP.
+The application supports automatic location detection based on the user's public IP address, allows manual city input, and implements local caching to reduce unnecessary API requests.
 
-    Ricerca meteorologica basata su specifica città.
+## Features
 
-    Visualizzazione di dati dettagliati: temperatura, umidità, velocità del vento e condizioni atmosferiche.
+- Retrieve current weather data for any city.
+- Display temperature, humidity, wind speed, and general weather conditions.
+- Retrieve multi-day weather forecasts with configurable duration.
+- Automatically detect user location via IP address when no city is provided.
+- Cache API responses locally for 30 minutes.
+- Secure API key management using a `.env` file.
 
-    Supporto per previsioni multi-giorno.
+## Requirements
 
-    Sistema di caching dei dati con validità di 30 minuti per l'ottimizzazione delle richieste API.
+- Python 3.10 or later
+- A Visual Crossing Weather API key
 
-    Gestione sicura della chiave API tramite file di configurazione .env.
+## Installation
 
-Tecnologie
+Clone the repository:
 
-    Python 3
-
-    Requests
-
-    python-dotenv
-
-    Visual Crossing Weather API
-
-Installazione
-
-Clonare il repository:
-Bash
-
+```bash
 git clone https://github.com/YOUR_USERNAME/weather-cli.git
 cd weather-cli
+```
 
-Installare le dipendenze necessarie:
-Bash
+Install dependencies:
 
+```bash
 pip install -r requirements.txt
+```
 
-Configurazione
+## Configuration
 
-È necessario ottenere una chiave API dal portale Visual Crossing. Una volta ottenuta, creare un file denominato .env nella directory principale del progetto e inserire la chiave nel seguente formato:
+Create a `.env` file in the root directory and add your API key:
 
-API_KEY=tua_api_key
+```env
+API_KEY=your_api_key
+```
 
-Utilizzo
+An API key can be obtained from the Visual Crossing Weather website.
 
-L'applicazione supporta i seguenti comandi:
+## Usage
 
-    Posizione corrente: python weather.py
+Get weather data using automatic location detection:
 
-    Ricerca per città: python weather.py --city NomeCittà
+```bash
+python weather.py
+```
 
-    Previsioni estese: python weather.py --city NomeCittà --day NumeroGiorni
+Get weather data for a specific city:
 
-Sono disponibili le seguenti abbreviazioni:
+```bash
+python weather.py --city Rome
+```
 
-    -c per --city
+Specify the number of forecast days:
 
-    -d per --day
+```bash
+python weather.py --city London --day 5
+```
 
-Struttura del Progetto
-Plaintext
+Short argument format:
 
+```bash
+python weather.py -c Paris -d 7
+```
+
+## Project Structure
+
+```
 weather-cli/
 │
 ├── cache/
-│   └── .cache_city.json
+│   └── .cache_<city>.json
 ├── .env
 ├── .gitignore
-├── weather.py
 ├── README.md
-└── requirements.txt
+├── requirements.txt
+└── weather.py
+```
 
-Caching
+## Caching
 
-I dati meteorologici vengono archiviati temporaneamente nella directory cache/. I file salvati sono riutilizzati per un intervallo di 30 minuti al fine di limitare il numero di chiamate verso l'API.
-Licenza
+To reduce the number of API requests, responses are stored locally inside the `cache` directory.
 
-Il progetto è distribuito sotto licenza MIT.
+Cached data remains valid for 30 minutes. After this period, a new request is made and the cache is updated automatically.
+
+## Dependencies
+
+- requests
+- python-dotenv
+
+You can generate the requirements file using:
+
+```bash
+pip freeze > requirements.txt
+```
+
+## License
+
+This project is released under the MIT License.
