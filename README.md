@@ -69,20 +69,6 @@ Short argument format:
 python weather.py -c Paris -d 7
 ```
 
-## Project Structure
-
-```
-weather-cli/
-│
-├── cache/
-│   └── .cache_<city>.json
-├── .env
-├── .gitignore
-├── README.md
-├── requirements.txt
-└── weather.py
-```
-
 ## Caching
 
 To reduce the number of API requests, responses are stored locally inside the `cache` directory.
